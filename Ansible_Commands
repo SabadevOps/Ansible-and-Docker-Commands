@@ -1,0 +1,69 @@
+### Basic Ansible Commands
+
+- **ansible --version**: Show the Ansible version installed.
+- **ansible all -m ping**: Test connectivity to all hosts defined in the inventory file.
+- **ansible-inventory --list**: Display the inventory in JSON format.
+- **ansible-doc -l**: List all available modules.
+- **ansible-doc <module_name>**: Show documentation for a specific module.
+
+### Ad-hoc Commands
+
+- **ansible all -m command -a "ls -l"**: Run a command on all hosts.
+- **ansible all -m shell -a "uptime"**: Run a shell command on all hosts.
+- **ansible all -m copy -a "src=/etc/hosts dest=/tmp/hosts"**: Copy a file to all hosts.
+- **ansible all -m file -a "path=/tmp/hosts state=absent"**: Remove a file on all hosts.
+- **ansible all -m yum -a "name=httpd state=present"**: Install a package using yum on all hosts.
+- **ansible all -m service -a "name=httpd state=started"**: Start a service on all hosts.
+
+### Playbook Commands
+
+- **ansible-playbook playbook.yml**: Run a playbook.
+- **ansible-playbook -i inventory playbook.yml**: Run a playbook with a specified inventory file.
+- **ansible-playbook playbook.yml --check**: Perform a dry run (check mode) to see what changes would be made.
+- **ansible-playbook playbook.yml --diff**: Show differences when files are changed.
+- **ansible-playbook playbook.yml --limit "host1,host2"**: Limit execution to specific hosts.
+- **ansible-playbook playbook.yml --tags "tag1,tag2"**: Run only tasks with specific tags.
+- **ansible-playbook playbook.yml --skip-tags "tag1,tag2"**: Skip tasks with specific tags.
+- **ansible-playbook playbook.yml --start-at-task="task_name"**: Start the playbook at a specific task.
+
+### Inventory Management
+
+- **ansible-inventory --list -i inventory**: List all hosts in the inventory.
+- **ansible-inventory --graph -i inventory**: Show the inventory graph.
+- **ansible-inventory --host host_name -i inventory**: Show variables for a specific host.
+
+### Vault Commands (Encryption)
+
+- **ansible-vault create secret.yml**: Create a new encrypted file.
+- **ansible-vault edit secret.yml**: Edit an encrypted file.
+- **ansible-vault encrypt file.yml**: Encrypt an existing file.
+- **ansible-vault decrypt file.yml**: Decrypt an encrypted file.
+- **ansible-vault rekey file.yml**: Change the password for an encrypted file.
+
+### Roles Management
+
+- **ansible-galaxy init role_name**: Create a new role.
+- **ansible-galaxy install role_name**: Install a role from Ansible Galaxy.
+- **ansible-galaxy remove role_name**: Remove an installed role.
+- **ansible-galaxy list**: List installed roles.
+
+### Configuration Management
+
+- **ansible-config list**: List all configuration options.
+- **ansible-config dump**: Dump the configuration in JSON format.
+- **ansible-config view**: View the current configuration file.
+
+### Troubleshooting and Debugging
+
+- **ansible-playbook playbook.yml -vvvv**: Run a playbook with increased verbosity (four 'v's for maximum verbosity).
+- **ansible all -m debug -a "msg='Hello, World!'"**: Print a debug message on all hosts.
+- **ansible all -m setup**: Gather and display facts about all hosts.
+- **ansible all -m setup -a 'filter=ansible_distribution'**: Display specific facts (e.g., OS distribution).
+
+### Miscellaneous
+
+- **ansible-galaxy collection list**: List installed collections.
+- **ansible-galaxy collection install collection_name**: Install a collection from Ansible Galaxy.
+- **ansible-pull -U <repository>**: Pull playbooks from a VCS repository and execute them on the local host.
+- **ansible-pull -U <repository> --check**: Perform a dry run of the pulled playbooks.
+
